@@ -3,11 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PR Countdown</title>
+    <title>GitHub Stats</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FFC319; /* Color de fondo */
+            color: #333; /* Color del texto */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background-color: #733fe7; /* Color de fondo del contenedor */
+        }
+        h1 {
+            color: #333; /* Color del título 484848 */
+        }
+        p {
+            color: #333; /* Color del texto normal */
+        }
+    </style>
 </head>
 <body>
-    <h1>PR Countdown</h1>
-    <p>Total Pull Requests: <span id="prCount">Loading...</span></p>
+    <div class="container">
+        <img src="galgo_logo.png" alt="Galgo" width="100">
+        <p>Total Pull Requests: <span id="prCount">Loading...</span></p>
+    </div>
 
     <script>
         fetch('pr_count.txt')
@@ -19,4 +47,3 @@
     </script>
 </body>
 </html>
-
