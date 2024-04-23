@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PR Countdown</title>
+</head>
+<body>
+    <h1>PR Countdown</h1>
+    <p>Total Pull Requests: <span id="prCount">Loading...</span></p>
+
+    <script>
+        fetch('pr_count.txt')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('prCount').innerText = data;
+            })
+            .catch(error => console.error('Error fetching pr count:', error));
+    </script>
+</body>
+</html>
+
