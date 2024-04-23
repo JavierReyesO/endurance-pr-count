@@ -44,12 +44,23 @@
     </div>
 
     <script>
-        fetch('pr_count.txt')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('prCount').innerText = data;
-            })
-            .catch(error => console.error('Error fetching pr count:', error));
+        // Función para cargar y mostrar el número total de pull requests
+        function loadPRCount() {
+            fetch('pr_count.txt')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('prCount').innerText = data;
+                })
+                .catch(error => console.error('Error fetching PR count:', error));
+        }
+
+        // Llamar a las funciones para cargar y mostrar los números
+        loadPRCount();
+
+        // Actualizar los números cada cierto intervalo de tiempo (por ejemplo, cada 60 segundos)
+        setInterval(() => {
+            loadPRCount();
+        }, 300000); // 60000 milisegundos = 60 segundos
     </script>
 </body>
 </html>
