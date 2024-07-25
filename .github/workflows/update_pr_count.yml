@@ -1,0 +1,44 @@
+name: Update PR Count
+
+on: workflow_dispatch
+
+#on:
+#  schedule:
+#    - cron: '0 * * * *' # Ejecutar cada hora
+#  push:
+#    branches:
+#      - main
+
+env:
+  APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
+  INSTALLATION_ID: ${{ secrets.INSTALLATION_ID }}
+  PEM_FOR_JWT: |
+    ${{ secrets.PEM_FOR_JWT }}
+
+jobs:
+  update-pr-count:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.3' # Not needed with a `.ruby-version` or `.tool-versions`
+
+    - name: Install dependencies
+      run: |
+        gem install jwt uri json openssl
+
+    - name: Update PR count
+      run: |
+        ruby update_pr_count.rb $APP_CLIENT_ID $INSTALLATION_ID $PEM_FOR_JWT
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.name 'JavierReyesO'
+        git config --global user.email 'javi.reyesor@gmail.com'
+        git add pr_count.txt
+        git commit -m 'Update PR count'
+        git push
