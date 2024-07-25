@@ -12,8 +12,7 @@ on: workflow_dispatch
 env:
   APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
   INSTALLATION_ID: ${{ secrets.INSTALLATION_ID }}
-  PEM_FOR_JWT: |
-    ${{ secrets.PEM_FOR_JWT }}
+  PEM_FOR_JWT: ${{ secrets.PEM_FOR_JWT }}
 
 jobs:
   update-pr-count:
