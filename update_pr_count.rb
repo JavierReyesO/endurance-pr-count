@@ -6,11 +6,15 @@ require 'json'
 require 'openssl'
 require 'jwt' # https://rubygems.org/gems/jwt
 
-# Private key contents
-# private_pem = File.read('endurance-pr-count.2024-07-25.private-key.pem')
+if ARGV.length < 2
+  puts 'Uso: ruby get_installations.rb <APP_CLIENT_ID> <INSTALLATION_ID> <PRIVATE_PEM>'
+  exit 1
+end
+
 github_app_client_id = ARGV[0]
 installation_id = ARGV[1]
-private_pem = ARGV[2]
+# private_pem = ARGV[2]
+private_pem = File.read('private-key.pem')
 private_key = OpenSSL::PKey::RSA.new(private_pem)
 
 # Generate the JWT
