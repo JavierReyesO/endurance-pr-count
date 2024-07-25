@@ -7,7 +7,7 @@ require 'openssl'
 require 'jwt' # https://rubygems.org/gems/jwt
 
 if ARGV.length < 2
-  puts 'Uso: ruby get_installations.rb <APP_CLIENT_ID> <INSTALLATION_ID> <PRIVATE_PEM>'
+  puts 'Uso: ruby get_installations.rb <APP_CLIENT_ID> <INSTALLATION_ID>'
   exit 1
 end
 

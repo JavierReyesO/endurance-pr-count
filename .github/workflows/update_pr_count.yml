@@ -30,24 +30,18 @@ jobs:
       run: |
         echo "$PEM_FOR_JWT" > private-key.pem
 
-    - name: 'Upload Artifact'
-      uses: actions/upload-artifact@v4
-      with:
-        name: private-key
-        path: private-key.pem
+    - name: Install dependencies
+      run: |
+        gem install jwt uri json openssl
 
-#    - name: Install dependencies
-#      run: |
-#        gem install jwt uri json openssl
-#
-#    - name: Update PR count
-#      run: |
-#        ruby update_pr_count.rb $APP_CLIENT_ID $INSTALLATION_ID $PEM_FOR_JWT
-#
-#    - name: Commit and push changes
-#      run: |
-#        git config --global user.name 'JavierReyesO'
-#        git config --global user.email 'javi.reyesor@gmail.com'
-#        git add pr_count.txt
-#        git commit -m 'Update PR count'
-#        git push
+    - name: Update PR count
+      run: |
+        ruby update_pr_count.rb $APP_CLIENT_ID $INSTALLATION_ID
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.name 'JavierReyesO'
+        git config --global user.email 'javi.reyesor@gmail.com'
+        git add pr_count.txt
+        git commit -m 'Update PR count'
+        git push
