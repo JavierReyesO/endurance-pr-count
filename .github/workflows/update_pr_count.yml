@@ -28,7 +28,7 @@ jobs:
 
     - name: save secret to file
       run: |
-        echo $PEM_FOR_JWT > private-key.pem
+        echo "$PEM_FOR_JWT" > private-key.pem
 
     - name: 'Upload Artifact'
       uses: actions/upload-artifact@v4
