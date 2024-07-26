@@ -33,7 +33,7 @@ jobs:
 
     - name: Update PR count
       run: |
-        ruby update_pr_count.rb $APP_CLIENT_ID $INSTALLATION_ID
+        bundle exec ruby update_pr_count.rb $APP_CLIENT_ID $INSTALLATION_ID
 
     - name: Commit and push changes
       run: |
