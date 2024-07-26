@@ -35,10 +35,22 @@ jobs:
       run: |
         bundle exec ruby update_pr_count.rb $APP_CLIENT_ID $INSTALLATION_ID
 
+    - name: Check for changes
+      id: git_diff
+      run: |
+        git add pr_count.txt
+        if git diff --cached --exit-code; then
+          echo "No changes to commit"
+          echo "changed=false" >> $GITHUB_ENV
+        else
+          echo "Changes detected"
+          echo "changed=true" >> $GITHUB_ENV
+        fi
+
     - name: Commit and push changes
+      if: env.changed == 'true'
       run: |
         git config --global user.name 'JavierReyesO'
         git config --global user.email 'javi.reyesor@gmail.com'
-        git add pr_count.txt
         git commit -m 'Update PR count'
         git push
