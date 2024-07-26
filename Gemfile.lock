@@ -1,0 +1,22 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    base64 (0.2.0)
+    json (2.7.2)
+    jwt (2.8.2)
+      base64
+    openssl (3.2.0)
+    uri (0.13.0)
+
+PLATFORMS
+  arm64-darwin-22
+  ruby
+
+DEPENDENCIES
+  json
+  jwt
+  openssl
+  uri
+
+BUNDLED WITH
+   2.5.16
