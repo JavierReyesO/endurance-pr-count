@@ -2,12 +2,12 @@ name: Update PR Count
 
 on: workflow_dispatch
 
-on:
-  schedule:
-    - cron: '0,10,20,30,40,50 8-20 * * *' # Ejecutar cada 10 minutos de 8:00 a 20:00
-  push:
-    branches:
-      - main
+#on:
+#  schedule:
+#    - cron: '0,10,20,30,40,50 8-20 * * *' # Ejecutar cada 10 minutos de 8:00 a 20:00
+#  push:
+#    branches:
+#      - main
 
 env:
   APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
