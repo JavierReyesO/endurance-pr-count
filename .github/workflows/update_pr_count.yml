@@ -27,18 +27,32 @@ jobs:
         ruby-version: '3.3' # Not needed with a `.ruby-version` or `.tool-versions`
         bundler-cache: true
 
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
     - name: save secret to file
       run: |
         echo "$PEM_FOR_JWT" > private-key.pem
 
+    - name: Install http-server
+      run: |
+        npm install -g http-server
+
     - name: Update PR count
       run: |
         bundle exec ruby update_pr_count.rb $APP_CLIENT_ID $INSTALLATION_ID
+        bundle exec gem install playwright --no-document
+        npx playwright install --force
+        http-server . > http.log 2>&1 &
+        bundle exec ruby generate_preview_image.rb
 
     - name: Check for changes
       id: git_diff
       run: |
         git add pr_count.txt
+        git add preview-image.png
         if git diff --cached --exit-code; then
           echo "No changes to commit"
           echo "changed=false" >> $GITHUB_ENV
