@@ -50,8 +50,8 @@ jobs:
         bundle exec ruby update_pr_count.rb $APP_CLIENT_ID $INSTALLATION_ID
         http-server . > http.log 2>&1 &
         pip install playwright
-        python -m playwright install
         playwright install-deps
+        python -m playwright install
         python generate-preview-image.py
 
     - name: Check for changes
