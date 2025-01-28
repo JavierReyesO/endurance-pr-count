@@ -51,6 +51,7 @@ jobs:
         http-server . > http.log 2>&1 &
         pip install playwright
         python -m playwright install
+        playwright install-deps
         python generate-preview-image.py
 
     - name: Check for changes
