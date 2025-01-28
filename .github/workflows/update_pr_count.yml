@@ -43,10 +43,9 @@ jobs:
     - name: Update PR count
       run: |
         bundle exec ruby update_pr_count.rb $APP_CLIENT_ID $INSTALLATION_ID
-        bundle exec gem install playwright --no-document
         npx playwright install --force
         http-server . > http.log 2>&1 &
-        bundle exec ruby generate_preview_image.rb
+        node screenshot.js
 
     - name: Check for changes
       id: git_diff
